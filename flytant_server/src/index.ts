@@ -27,11 +27,6 @@ mongoose
 app.use('/api', todoRouter);
 
 
-// Define a test route
-app.get('/', (req, res) => {
-  res.send('Express + TypeScript + MongoDB Server');
-});
-
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);

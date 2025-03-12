@@ -2,9 +2,9 @@
     "name": "flyntant_todo_application",
     "version": "1.0.0",
     "scripts": {
-        "client": "cd flyntant_todo_client && npm start",
-        "server": "cd flyntant_server && npm run start",
-        "dev": "concurrently \"npm run start:client\" \"npm run start:server\""
+        "client": "cd flytant_client && npm run start",
+        "server": "cd flytant_server && npm run dev",
+        "dev": "concurrently \"npm run client\" \"npm run server\""
     },
     "dependencies": {
         "concurrently": "^7.6.0"

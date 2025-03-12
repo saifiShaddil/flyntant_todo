@@ -57,4 +57,18 @@ router.put('/todos/:id', async (req: Request, res: Response): Promise<any> => {
   }
 });
 
+// Remove a Single Todo
+router.delete('/todos/:id', async (req: Request, res: Response): Promise<any> => {
+  try {
+    const { id } = req.params;
+    const todo = await Todo.findById(id);
+    if (!todo) {
+      return res.status(404).json({ error: 'Todo not found' });
+    }
+    return res.json(todo);
+  } catch (error) {
+    return res.status(500).json({ error: 'Failed to fetch todo' });
+  }
+});
+
 export default router;
