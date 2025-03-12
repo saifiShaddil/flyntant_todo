@@ -61,7 +61,7 @@ router.put('/todos/:id', async (req: Request, res: Response): Promise<any> => {
 router.delete('/todos/:id', async (req: Request, res: Response): Promise<any> => {
   try {
     const { id } = req.params;
-    const todo = await Todo.findById(id);
+    const todo = await Todo.findByIdAndDelete(id);
     if (!todo) {
       return res.status(404).json({ error: 'Todo not found' });
     }
