@@ -18,13 +18,14 @@ export function TodoDetail({ todo, setTodo, onDelete }: Props) {
    const handleDelete = async () => {
     if (todo && todo._id) {
       try {
-        // const response = await fetch(`/api/todos/${todo._id}`, { method: 'DELETE' });
-        onDelete(todo._id);
-        // if (response.ok) {
-        // } else {
-        //   console.error('Failed to delete todo');
-        // }
-        setDescription('')
+        const response = await fetch(`http://localhost:5000/api/todos/${todo._id}`, { method: 'DELETE' });
+        console.log(response)
+        if (response.ok) {
+          onDelete(todo._id);
+          setDescription('')
+        } else {
+          console.error('Failed to delete todo');
+        }
       } catch (error) {
         console.error('Error deleting todo:', error);
       }
@@ -43,10 +44,10 @@ export function TodoDetail({ todo, setTodo, onDelete }: Props) {
   }, [todo]);
 
   return (
-    <div className="rounded p-4 h-full bg-white">
+    <div className="rounded p-4 lg:p-4 h-full bg-white">
       {/* Title and Delete Icon */}
-      <div className="flex justify-between items-center w-full mb-4">
-        <h2 className="text-4xl leading-[19px] tracking-wide font-semibold">{'New Additions'}</h2>
+      <div className="flex justify-between items-center w-full mb-6">
+        <h2 className="lg:text-4xl text-lg leading-[19px] tracking-wide font-semibold">{'New Additions'}</h2>
         <img
           src="/assets/delete.svg"
           alt="Delete"
@@ -57,20 +58,19 @@ export function TodoDetail({ todo, setTodo, onDelete }: Props) {
       </div>
 
       {/* Rich Text Editor Icons (Styled) */}
-      <div className="flex gap-4 mb-2 text-sm text-black bg-white border-b border-gray-300 pb-2">
-        <span className="cursor-pointer text-lg font-bold">B</span>
-        <span className="cursor-pointer text-lg italic">I</span>
-        <span className="cursor-pointer text-lg underline">U</span>
-        <span className="cursor-pointer text-lg">≡</span>
-        <span className="cursor-pointer text-lg">≣</span>
-        <span className="cursor-pointer text-lg">●</span>
-        <span className="cursor-pointer text-lg">1.</span>
-        <span className="cursor-pointer text-lg">A</span>
+      <div className="flex gap-4 mb-2 text-sm text-black bg-white border-b border-b-gray-700 border-gray-300 pb-2">
+        <img className='h-[10px] w-2' src='/assets/b.svg' />
+        <img className='h-[10px] w-2' src='/assets/i.svg' />
+        <img className='h-[10px] w-2' src='/assets/u.svg' />
+        <img className='h-[12px] w-16' src='/assets/line.svg' />
+        <img className='h-[12px] w-12' src='/assets/list.svg' />
+        <img className='h-[10px] w-2' src='/assets/fill.svg' />
+        <img className='h-[10px] w-2' src='/assets/text.svg' />
       </div>
 
       {/* Description Input */}
       <div
-        className="w-full p-2 text-black text-lg leading-4.5 focus:outline-none resize-none mb-2"
+        className="w-full px-0 py-3 text-black text-[15px] leading-3.5  font-normal lg:text-[16px] lg:leading-4.5 focus:outline-none resize-none mb-2"
         
       >{description}</div>
 
